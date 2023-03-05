@@ -188,3 +188,244 @@ When filtering string attributes, use string values.
 For numeric attributes, use number values.
 
 For date attributes, you can specify a date in the format `YYYY-MM-DD`, or define a relative date with an array of the shape `[offset, unit]`. For example, a relative date of 1 year before now would look like `[-1, 'year']`.
+
+## Visualization
+Information about the visualization of the saved view.
+
+<ParamField path="chartType" type="area| bar| line| pivot| table">
+    The chart type
+</ParamField>
+<ParamField path="colorPalette" type="string">
+    The file path to the color palette definition.
+</ParamField>
+<ParamField path="showOther" type="boolean">
+    Flag indicating whether unfiltered items should be displayed in an "Other" group when a breakout is active.
+</ParamField>
+<ParamField path="stack" type="stack| stack100pct| unstack">
+    The stacking type, when using an "area", "bar", or "line" chart.
+</ParamField>
+<ParamField path="showAxisLabels" type="boolean">
+    Whether to show the axis labels when using an "area", "bar", or "line" chart
+</ParamField>
+<ParamField path="missingValuesBehavior" type="hide| show">
+    Whether to show missing values for a "bar" chart
+</ParamField>
+<ParamField path="legend" type="bottom| left| none| right| top">
+    The position of the chart legend when using an "area", "bar", "line" or horizontal bar chart
+</ParamField>
+<ParamField path="tableColor" type="blue| green| none| red">
+    A gradient table color to be used in conjunction with table calculations in a "pivot" chart
+</ParamField>
+<ParamField path="padding" type="compact| default">
+    The amount of table padding to apply in a "pivot" or "table" chart
+</ParamField>
+<ParamField path="tableVisualization" type="array">
+    Cell visualizations for table or pivot charts
+</ParamField>
+
+<Expandable title="properties">
+
+<ParamField path="calculation" type="columnPercentMax| columnPercentTotal| rowPercentTotal">
+</ParamField>
+<ParamField path="columnId" type="string">
+</ParamField>
+<ParamField path="type" type="bar">
+</ParamField>
+<ParamField path="maxWidthPixels" type="number">
+</ParamField>
+<ParamField path="heightPixels" type="number">
+</ParamField>
+<ParamField path="labelPlacement" type="floating| non| right">
+</ParamField>
+<ParamField path="metricFormulaName" type="string">
+</ParamField>
+
+
+</Expandable>
+
+<ParamField path="tableCellFormatting" type="array">
+    Cell formatting for table or pivot charts
+</ParamField>
+
+<Expandable title="properties">
+
+<ParamField path="calculation" type="columnPercentMax| columnPercentTotal| rowPercentTotal">
+</ParamField>
+<ParamField path="columnId" type="string">
+</ParamField>
+<ParamField path="color" type="blue| green| none red">
+</ParamField>
+<ParamField path="showPercentage" type="boolean">
+</ParamField>
+<ParamField path="metricFormulaName" type="string">
+</ParamField>
+
+
+</Expandable>
+
+## ControlPanel
+Specifications for the control panel
+
+<ParamField path="isVisible" type="boolean">
+    If true (default), then the control panel will be visible.
+</ParamField>
+
+## AttributeTray
+<ParamField path="isVisible" type="boolean">
+    If false, the attribute tray will be hidden.
+</ParamField>
+<ParamField path="orderAttributesAccordingToSpec" type="boolean">
+    If true, tiles in the attribute tray will be ordered as specified below in `attributeTiles`, with all remaining attributes being placed after. If false (the default), attributes will appear in the default order regardless of their specification in `attributeTiles`.
+</ParamField>
+<ParamField path="attributeTiles" type="array">
+    Per-tile configuration. By default, all non-date attributes in the model will appear as tiles in the attribute tray. Specifying tiles in this array allows for additional tile configuration, including hiding them. Specifying tiles in this array will shift them to the start of the tray.
+</ParamField>
+
+<Expandable title="properties">
+
+<ParamField path="columnId" type="string">
+    The column identifier of this tile's attribute.
+</ParamField>
+<ParamField path="hidden" type="boolean">
+    If true, this tile will not be shown.
+</ParamField>
+<ParamField path="bins" type="object">
+    The binning of a numeric attribute in this tile.
+</ParamField>
+    <Expandable title="properties">
+    <ParamField path="binWidth" type="number">
+        The bin width for grouping data from this column.
+    </ParamField>
+    <ParamField path="binEnabled" type="boolean">
+        If binsEnabled is omitted, bins will still be enabled.
+    </ParamField>
+    </Expandable>
+</Expandable>
+<ParamField path="granularity" type="day | hour| minute| month| quarter| second| week| year">
+    The date granularity of a datetime attribute in this tile.
+</ParamField>
+
+## Exceptions by Chart Type
+
+### Horizontal Bar Charts
+
+Set `visualization.chartType` to `"horizontal_bar"`
+
+- Instead of `data.x`, horizontal bar charts use `data.rows`.
+- Instead of `data.y`, horizontal bar charts use `data.metric`.
+
+### Source Data Tables
+
+Set `visualization.chartType` to `"source_data_table"`
+
+- Only `data.y`, `data.limit`, and `data.filters` are supported.
+
+## Examples
+ 
+#### Simple Bar Chart
+
+```yaml
+glean: "1.0"
+type: saved_view
+name: My Saved View
+model: ../my_model.yml
+visualization:
+  chartType: bar
+data:
+  x:
+    columnId: secondary_event_date
+    granularity: day
+  y:
+    columnId: metric_sum
+  filters:
+    - columnId: secondary_event_date
+      range:
+        - 2014-01-01
+        - 2017-01-01
+  breakout:
+    columnId: location
+    groups:
+      - key: Street/Sidewalk
+      - key: Residential Building/House
+```
+
+### Bar Chart with Binned Numeric X Axis
+```yaml
+glean: "1.0"
+type: saved_view
+name: My Saved View
+model: ../my_model.yml
+visualization:
+  chartType: bar
+data:
+  x:
+    columnId: numeric_column
+    bins:
+      binWidth: 0.2
+  y:
+    columnId: metric_sum
+  filters:
+    - columnId: secondary_event_date
+      range:
+        - 2014-01-01
+        - 2017-01-01
+  breakout:
+    columnId: location
+    groups:
+      - key: Street/Sidewalk
+      - key: Residential Building/House
+```
+
+### Table with Multiple Metrics
+
+```yaml
+glean: "1.0"
+type: saved_view
+name: My Saved View
+model: ../my_model.yml
+visualization:
+  chartType: table
+data:
+  x:
+    columnId: numeric_column
+    bins:
+      binWidth: 0.2
+  y:
+    - columnId: metric_sum
+    - columnId: metric_avg
+  filters:
+    - columnId: secondary_event_date
+      range:
+        - 2014-01-01
+        - 2017-01-01
+  breakout:
+    columnId: location
+    groups:
+      - key: Street/Sidewalk
+      - key: Residential Building/House
+```
+
+### Table with Attribute & Metric Filters
+```yaml
+glean: "1.0"
+type: saved_view
+name: My Saved View
+model: ../my_model.yml
+visualization:
+  chartType: table
+data:
+  x:
+    columnId: numeric_column
+    bins:
+      binWidth: 0.2
+  y:
+    - columnId: metric_sum
+    - columnId: metric_avg
+  filters:
+    - columnId: secondary_event_date
+      range:
+        - 2014-01-01
+        - 2017-01-01
+    - columnId: metric_sum
+      lt: 50000
+```
