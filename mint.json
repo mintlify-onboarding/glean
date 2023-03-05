@@ -90,6 +90,12 @@
             ]
           }
       ]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+          "create-retention-curves/index"
+      ]
     }
   ],
   "footerSocials":
