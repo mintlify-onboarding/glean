@@ -1,24 +1,15 @@
-# Glean Resource Names (GRNs)
-
-A "Glean Resource Name" or "GRN" is a way to reference Glean resources in a
-stable way. As a resource is changed, renamed, moved between collections, etc.
-its GRN will always remain the same.
+---
+title: "Glean Resource Names (GRNs)"
+description: "A Glean Resource Name or GRN is a way to reference Glean resources in a stable way. As a resource is changed, renamed, moved between collections, etc. its GRN will always remain the same."
+---
 
 ## Anatomy of a GRN
 
-<!-- TODO: Once `alias` is user-facing, uncomment this stuff... -->
-
-A GRN is comprised of two <!--three--> components, separated by `:`
+A GRN is comprised of two  components, separated by `:`
 
 ```bash
 type:id
 ```
-
-<!--
-```
-type:id:alias
-```
--->
 
 - `type` identifies the resource type
   - `dsb`: dashboard
@@ -28,15 +19,6 @@ type:id:alias
 - `id` is an globally unique identifier first assigned when the resource
   is created. The ID appears in the URL bar when viewing a resource.
 
-<!-- - `alias` is a stable name that users can configure for resources.  -->
-
-<!-- GRNs can be abbreviated to not include the `id` or `alias` components:
-
-```
-type:id
-type::alias
-```
--->
 
 The following are all valid GRNs:
 
