@@ -47,6 +47,18 @@
           "data-modeling/metrics",
           "data-modeling/query-data-files"
       ]
+    },
+    {
+      "group": "Data Explorer",
+      "pages": [
+          "visualizing-data/Attributes-Tray",
+          "visualizing-data/Breakout",
+          "visualizing-data/Calculations",
+          "visualizing-data/Chart-Interactions",
+          "visualizing-data/Chart-Menu",
+          "visualizing-data/Filter",
+          "visualizing-data/Explorations"
+      ]
     }
   ],
   "footerSocials":
