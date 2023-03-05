@@ -108,6 +108,26 @@
           "database-connections/postgresql",
           "database-connections/snowflake"
       ]
+    },
+    {
+      "group": "Project Management",
+      "pages": [
+          "project-management/custom-styles",
+          "project-management/get-access-domains",
+          "project-management/collections",
+          "project-management/invite-links",
+          "project-management/slack-integration",
+          "project-management/users-and-permissions",
+          "project-management/single-sign-on",
+          "database-connections/index",
+          "project-management/demo-projects"
+      ]
+    },
+    {
+      "group": "Support",
+      "pages": [
+          "contact-us"
+      ]
     }
   ],
   "footerSocials":
