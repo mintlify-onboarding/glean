@@ -1,6 +1,10 @@
+---
+title: "Snowflake"
+---
+
 ## Overview
 
-If you have a lot of data and want to keep throwing it into a data warehouse, [Snowflake](https://www.snowflake.com){:target="_blank"} is a tried and tested solution.  They continually push the boundary on sql and analytics features and their data sharing features between organizations are particularly strong for larger enterprisies.
+If you have a lot of data and want to keep throwing it into a data warehouse, [Snowflake](https://www.snowflake.com) is a tried and tested solution.  They continually push the boundary on sql and analytics features and their data sharing features between organizations are particularly strong for larger enterprisies.
 
 About 50% of Glean's customers use Snowflake, if you're using AWS it is a good solution.  If you don't have much data, using Postgres, Redshift or even DuckDB could be good options.  Compared with Redshift, Snowflake has a more modern architecture with decoupled storage and compute that can scale to larger datasets more easily.  This architecture is also much easier to manage with more flexibility on how much compute you use and fewer decisions on how you are going to lay out data.  If Google Cloud is an option, you may also want to consider BigQuery as an alternative to Snowflake.
 
@@ -44,7 +48,7 @@ You can run the following script. Make sure you fill out your database name, war
 
 ### Settings
 
-- **Account**: [Your snowflake account](https://docs.snowflake.com/en/user-guide/connecting.html#your-snowflake-account-name) is provided by Snowflake and included in the start of the URL you use to login to Snowflake: <account_name>.snowflakecomputing.com
+- **Account**: [Your snowflake account](https://docs.snowflake.com/en/user-guide/connecting.html#your-snowflake-account-name) is provided by Snowflake and included in the start of the URL you use to login to Snowflake: snowflakecomputing.com
 - **User**: the Snowflake user, best practice is to have a service user specifically dedicated to Glean
 - **Password**: password used to login to Snowflake
 - **Database**: the Snowflake database to use, databases correspond with logical groupings of tables and views in Snowflake.

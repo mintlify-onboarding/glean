@@ -1,4 +1,8 @@
-Once you add a database connection, it will be made available from the [Add Data Model](../data-modeling/add-data-model.md) workflow and you'll be able to specify tables or SQL queries to start visualizing data in Glean.
+---
+title: "Database Connections"
+---
+
+Once you add a database connection, it will be made available from the [Add Data Model](/data-modeling/add-data-model) workflow and you'll be able to specify tables or SQL queries to start visualizing data in Glean.
 
 ## Firewall Configuration
 
@@ -19,7 +23,7 @@ Fill out the remaining credentials as they'll be accessed by your bastion host, 
 
 ## Create a database connection
 
-1. Go to the [`Settings`]({{ glean_url }}/app/p/settings#database_connections){:target="\_blank"} page using the link in the project dropdown
+1. Go to the [`Settings`](https://glean.io/app/p/settings#database_connections) page using the link in the project dropdown
 2. Select `Database Connections`
 3. Click `+ Add Database Connection`
 4. Select the type of database
@@ -27,6 +31,8 @@ Fill out the remaining credentials as they'll be accessed by your bastion host, 
 6. Click the antenna icon to test your connection `🗼`
 7. Click `Add` to complete the process
 
-!!! schemas "Specifying schemas"
 
-    For most database types, you can optionally specify a schema.  If you specify a schema in Glean, only tables from that schema will be made available in the [Add Data Model](../data-modeling/add-data-model.md)  workflow
+<Card title="Specifying schemas" icon="pencil">
+      For most database types, you can optionally specify a schema.  If you specify a schema in Glean, only tables from that schema will be made available in the [Add Data Model](/data-modeling/add-data-model)  workflow
+</Card>
+
