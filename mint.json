@@ -83,7 +83,7 @@
             "group": "Configurations Schemas",
             "pages": [
                 "data-ops/config-schema/Data-Model",
-                "data-ops-config-schema/Saved-View",
+                "data-ops/config-schema/Saved-View",
                 "data-ops/config-schema/Dashboard",
                 "data-ops/config-schema/Color-Palette",
                 "data-ops/config-schema/Homepage-Launchpad"

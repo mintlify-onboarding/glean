@@ -1,3 +1,190 @@
-# Saved View
+---
+title: "Saved View"
+---
 
-{{ place_mdx_from_glean_app("publicResourceSpecs/SavedView") }}
+## Schema
+Data models define the following properties:
+
+
+<ParamField path="glean" type="1.0">
+    The Glean file format version.
+</ParamField>
+<ParamField path="type" type="saved_view">
+    The type of this resource, which in this case should always be "saved_view".
+</ParamField>
+<ParamField path="name" type="string">
+    The user-facing name for this saved view. 
+</ParamField>
+<ParamField path="model" type="string">
+    The file path or GRN of the data model.
+</ParamField>
+<ParamField path="grn" type="string">
+    The persistent identifier for this data model.
+</ParamField>
+<ParamField path="data" type="Data">
+    Information about the data of the saved view.
+</ParamField>
+<ParamField path="visualization" type="Visualization">
+    Information about the visualization of the saved view.
+</ParamField>
+<ParamField path="controlPanel" type="ControlPanel">
+    Specifications for the control panel
+</ParamField>
+<ParamField path="attributeTray" type="AttributeTray">
+</ParamField>
+
+#Data
+
+<ParamField path="x" type="">
+    One or more columns to use as the x axis in the visualization. (Specifying multiple X columns is only applicable when using a Table visualization.)
+</ParamField>
+
+<Expandable title="properties">
+
+<ParamField path="columnId" type="string">
+    The column identifier of the column
+</ParamField>
+<ParamField path="granularity" type="day | hour| minute| month| quarter| second| week| year">
+    Which granularity to use when aggregating data, if this is a datetime column.
+</ParamField>
+<ParamField path="bins" type="object">
+    Specifies binning options for a numeric column.
+</ParamField>
+    <Expandable title="properties">
+    <ParamField path="binWidth" type="number">
+        The bin width for grouping data from this column.
+    </ParamField>
+    <ParamField path="binEnabled" type="boolean">
+        If binsEnabled is omitted, bins will still be enabled.
+    </ParamField>
+    </Expandable>
+</Expandable>
+
+<ParamField path="y" type="">
+    One or more columns to use as the y axis in the visualization, or as metric column(s) in a table. This can either be a reference to a model-defined metric:
+</ParamField>
+
+<Expandable title="properties">
+
+<ParamField path="columnId" type="string">
+    The column identifier of the column
+</ParamField>
+or a metric formula:
+<ParamField path="name" type="string">
+    The user-visible name of this metric.
+</ParamField>
+<ParamField path="formula" type="string">
+    A calculated metric formula.
+</ParamField>
+</Expandable>
+
+<ParamField path="brekaout" type="Breakout">
+    Specifies a color breakout to display in the visualization.
+</ParamField>
+<ParamField path="trellis" type="Breakout">
+    Specifies a trellis breakout to display in the visualization.
+</ParamField>
+<ParamField path="filters" type="array<Filter> " >
+    Specifies filters that are applied by default in this view.
+</ParamField>
+<ParamField path="sort" type="array">
+    Specifies column sorts for tables.
+</ParamField>
+
+<Expandable title="properties">
+
+<ParamField path="order" type="asc | desc">
+    Whether to sort values in ascending or descending order.
+</ParamField>
+<ParamField path="columnID" type="string">
+    Sort by the attribute or metric with the provided identifier.
+</ParamField>
+<ParamField path="metricFormulaName" type="string">
+    Sort by the metric formula with the provided name.
+</ParamField>
+</Expandable>
+<ParamField path="limit" type="number">
+    Specifies limits for number of rows displayed in tables or pivots.
+</ParamField>
+
+## Breakout
+Specifies a color or trellis breakout to display.
+
+<ParamField path="columnId" type="string">
+    The column identifier of the column used for the breakout.
+</ParamField>
+<ParamField path="groups" type="array">
+    The list of values to group by.
+</ParamField>
+
+<Expandable title="properties">
+<ParamField path="groups" type="array">
+    The list of values to group by.
+</ParamField>
+<ParamField path="key" type="null| string| number| boolean">
+    The value to group by
+</ParamField>
+<ParamField path="color" type="null| string">
+    The color of this breakout group
+</ParamField>
+</Expandable>
+
+<ParamField path="granularity" type="day | hour| minute| month| quarter| second| week| year">
+    For datetime columns, the granularity of the breakout. 
+</ParamField>
+<ParamField path="binWidth" type="number">
+    For numeric columns, the bin width of the breakout. 
+</ParamField>
+<ParamField path="metricId" type="string">
+</ParamField>
+<ParamField path="sort" type="asc| desc">
+</ParamField>
+<ParamField path="limit" type="number">
+</ParamField>
+<ParamField path="showOther" type="boolean">
+    If true, will collect any values not in `groups` under an "Other" group. Defaults to `true`.
+</ParamField>
+
+## Filters
+Filters require the following properties:
+
+<ParamField path="columnId" type="string">
+    The column identifier of the column used for filtering. 
+</ParamField>
+
+Specify **one** of the following properties on the filter to define the filtering condition:
+
+_Supported for string attributes:_
+<ParamField path="contains" type="string">
+    Filters to values which contain the provided substring.
+</ParamField>
+<ParamField path="values" type="array<string>">
+    Filters to an allowed set of literal values.
+</ParamField>
+<ParamField path="excludeValues" type="array<string>">
+    Filters to all data except the specified values.
+</ParamField>
+
+_Supported for numeric and date attributes:_Supported
+<ParamField path="range" type="array<*>">
+    Filters to values within the specified range.
+    This array should contain exactly 2 values. The first value is used as the lower bound, and the second value is used as the upper bound
+</ParamField>
+<ParamField path="gte" type="*">
+    Filter to values greater than or equal to the provided value.
+</ParamField>
+<ParamField path="gt" type="*">
+    Filter to values greater than the provided value.
+</ParamField>
+<ParamField path="lte" type="*">
+    Filter to values less than or equal to the provided value.
+</ParamField>
+<ParamField path="lt" type="*">
+    Filter to values less than the provided value.
+</ParamField>
+
+When filtering string attributes, use string values.
+
+For numeric attributes, use number values.
+
+For date attributes, you can specify a date in the format `YYYY-MM-DD`, or define a relative date with an array of the shape `[offset, unit]`. For example, a relative date of 1 year before now would look like `[-1, 'year']`.
