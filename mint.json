@@ -36,6 +36,17 @@
     {
       "group": "Glean",
       "pages": ["index.mdx"]
+    },
+    {
+      "group": "Data Models",
+      "pages": [
+          "data-modeling/Data-Models-Overview",
+          "data-modeling/add-data-model",
+          "data-modeling/caching",
+          "data-modeling/data-modeling-best-practices",
+          "data-modeling/metrics",
+          "data-modeling/query-data-files"
+      ]
     }
   ],
   "footerSocials":
