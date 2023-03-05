@@ -59,6 +59,16 @@
           "visualizing-data/Filter",
           "visualizing-data/Explorations"
       ]
+    },
+    {
+      "group": "Dashboards",
+      "pages": [
+          "dashboards/Overview",
+          "dashboards/Saved-Views",
+          "dashboards/Metrics",
+          "dashboards/Text",
+          "dashboards/Filters"
+      ]
     }
   ],
   "footerSocials":
