@@ -1,0 +1,46 @@
+{
+  "name": "Glean",
+  "logo": {
+    "light": "/logo/glean-logo-light.png",
+    "dark": "/logo/glean-logo-dark.png"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#F7AA35",
+    "light": "#FFD18B",
+    "dark": "#3A3134"
+  },
+  "topbarCtaButton": {
+    "name": "Get Access",
+    "url": "https://glean.io/getAccess?uid=61eb9bb1-8fb8-4eaf-bee2-6ffed35bba99"
+  },
+  "topbarLinks": [
+    {
+        "name": "Log In",
+        "url": "https://glean.io/app?uid=61eb9bb1-8fb8-4eaf-bee2-6ffed35bba99"
+      }
+  ],
+  "anchors": [
+    {
+      "name": "Github",
+      "icon": "github",
+      "url": "https://github.com/gleannyc"
+    },
+    {
+        "name": "Blog",
+        "icon": "book",
+        "url": "https://glean.io/blog"
+      }
+  ],
+  "navigation": [
+    {
+      "group": "Glean",
+      "pages": ["index.mdx"]
+    }
+  ],
+  "footerSocials":
+    {
+        "twitter": "",
+        "linkedin": ""
+    }
+}
