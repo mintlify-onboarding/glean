@@ -22,6 +22,11 @@
   ],
   "anchors": [
     {
+      "name": "Quickstart",
+      "icon": "start",
+      "url": "quickstart"
+    },
+    {
       "name": "Github",
       "icon": "github",
       "url": "https://github.com/gleannyc"
@@ -127,6 +132,12 @@
       "group": "Support",
       "pages": [
           "contact-us"
+      ]
+    },
+    {
+      "group": "Quickstart",
+      "pages": [
+          "quickstart"
       ]
     }
   ],
