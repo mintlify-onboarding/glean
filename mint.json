@@ -23,8 +23,8 @@
   "anchors": [
     {
       "name": "Quickstart",
-      "icon": "start",
-      "url": "quickstart"
+      "icon": "play",
+      "url": "quickstart/quickstart"
     },
     {
       "name": "Github",
@@ -35,12 +35,12 @@
         "name": "Blog",
         "icon": "book",
         "url": "https://glean.io/blog"
-      }
+    }
   ],
   "navigation": [
     {
       "group": "Glean",
-      "pages": ["index.mdx"]
+      "pages": ["index"]
     },
     {
       "group": "Data Models",
