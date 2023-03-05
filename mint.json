@@ -96,6 +96,18 @@
       "pages": [
           "create-retention-curves/index"
       ]
+    },
+    {
+      "group": "Database Connections",
+      "pages": [
+          "database-connections/index",
+          "database-connections/athena",
+          "database-connections/bigquery",
+          "database-connections/duckdb",
+          "database-connections/mysql",
+          "database-connections/postgresql",
+          "database-connections/snowflake"
+      ]
     }
   ],
   "footerSocials":
