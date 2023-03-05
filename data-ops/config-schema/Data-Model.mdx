@@ -4,4 +4,191 @@ title: "Data Model"
 
 Glean data model files are intended to map to the options available in the Data Model user interface (see [Data Models Overview](/data-modeling/Data-Models-Overview)).
 
-{{ place_mdx_from_glean_app("publicResourceSpecs/Model") }}
+## Schema
+Data models define the following properties:
+
+
+<ParamField path="glean" type="1.0">
+    The Glean file format version.
+</ParamField>
+<ParamField path="type" type="model">
+    The type of this resource, which in this case should always be "model".
+</ParamField>
+<ParamField path="name" type="string">
+    The user-facing name for this data model.
+</ParamField>
+<ParamField path="description" type="string">
+    The user-facing description for this data model.
+</ParamField>
+<ParamField path="grn" type="string">
+    The persistent identifier for this data model.
+</ParamField>
+<ParamField path="source" type="ModelSource">
+    Defines the source table or view which this model fetches data from. 
+    Model sources must define a data connection using either an `connectionId` or `connectionName`:
+</ParamField>
+<Expandable title="properties">
+
+<ParamField path="connectionId" type="string">
+</ParamField>
+<ParamField path="connectionName" type="string">
+</ParamField>
+Model sources must also define whether to pull from an existing table, or use a SQL statement:
+<ParamField path="physicalName" type="string">
+    The name of the table to fetch data from.
+</ParamField>
+<ParamField path="schema" type="string">
+    The schema to use when connecting to this data source.
+</ParamField>
+<ParamField path="sql" type="string">
+    The SQL statement used to fetch data. If `physicalName` is specified, this will be ignored.
+</ParamField>
+
+</Expandable>
+
+<ParamField path="cols" type="array<ModelMetric | ModelAttribute>">
+    The columns (metrics, attributes, dates) of the data model.
+</ParamField>
+
+## ModelMetric
+Defines a metric for this model. Metrics are defined by the following properties:
+
+<ParamField path="id" type="string">
+    The persistent identifier for the column.
+</ParamField>
+<ParamField path="type" type="metric">
+    The type of this column, which in this case should always be "attribute".
+</ParamField>
+<ParamField path="formattingOptions" type="object">
+    Optional formatting settings for metrics.
+</ParamField>
+<Expandable title="properties">
+
+<ParamField path="fixedDecimals" type="number">
+    The number of fixed decimal places to display.
+</ParamField>
+<ParamField path="commaThousandsSeparators" type="boolean">
+    Whether to use commas to separate thousands. Defaults to true.
+</ParamField>
+<ParamField path="formatAsDollars" type="boolean">
+    If true, the metric wil be formatted with a leading dollar sign.
+</ParamField>
+<ParamField path="formatAsPercent" type="boolean">
+    If true, the metric will be multiplied by 100 and formatted with a trailing % sign.
+</ParamField>
+
+</Expandable>
+
+A row_count metric only needs its aggregate property set to row_count:
+
+<ParamField path="aggregate" type="row_count">
+    Specifies how to aggregate data from this column.
+</ParamField>
+
+Metrics using standard aggregation functions can be defined using the following:
+
+<ParamField path="aggregate" type="avg | count | count_distinct | max | min | sum">
+    Specifies how to aggregate data from this column.
+</ParamField>
+<ParamField path="physicalName" type="string">
+    The name of the column as it appears in the underlying data source.
+</ParamField>
+
+Metrics defined using SQL require the following:
+
+<ParamField path="sql" type="string">
+    SQL expression defining the column.
+</ParamField>
+
+## ModelAttribute
+Attributes are defined by the following properties:
+
+<ParamField path="id" type="string">
+    The persistent identifier for the column.
+</ParamField>
+<ParamField path="type" type="attribute">
+    The type of this resource, which in this case should always be "attribute".
+</ParamField>
+<ParamField path="physicalName" type="string">
+    The name of the column as it appears in the underlying data source.
+</ParamField>
+<ParamField path="name" type="string">
+    The user-facing name for this data model.
+</ParamField>
+<ParamField path="description" type="string">
+    The user-facing description for this data model.
+</ParamField>
+
+Date attributes have the following additional properties:
+
+<ParamField path="type" type="datetime">
+</ParamField>
+<ParamField path="primaryDate" type="boolean">
+    Flag indicating whether the column is the primary date. Exactly one datetime column should have this set to true.
+</ParamField>
+<ParamField path="aggregationOptions" type="object">
+    Optional aggregation settings.
+</ParamField>
+<Expandable title="properties">
+
+<ParamField path="minGranularity" type="day| hour| minute| month| quarter| second| week| year">
+    The minimum granularity a user can select for this column.
+</ParamField>
+<ParamField path="maxGranularity" type="day| hour| minute| month| quarter| second| week| year">
+        The maximum granularity a user can select for this column
+</ParamField>
+
+</Expandable>
+
+## Examples
+The following is an example of a Data Model which loads the `all_sales` table and defines some simple attributes.
+
+```yaml
+glean: "1.0"
+name: Total Sales
+type: model
+source:
+  connectionName: Sales Database
+  physicalName: all_sales
+cols:
+  - id: metric_sum
+    type: metric
+    name: Total Revenue
+    aggregate: sum
+    physicalName: price
+  - id: region
+    type: attribute
+    physicalName: customer_region
+  - id: timestamp
+    type: datetime
+    physicalName: created_at
+    primaryDate: true
+```
+
+The following Data Model uses a SQL statement instead of an underlying table. It also uses sql to build a custom metric, `daily_active_users`:
+```yaml
+glean: "1.0"
+name: US Sales
+type: model
+source:
+  connectionName: Sales Database
+  sql: SELECT * FROM all_sales WHERE customer_region = 'US'
+cols:
+  - id: daily_active_users
+    type: metric
+    name: Daily Active Users
+    sql: COUNT(DISTINCT customer_id) / COUNT(DISTINCT create_at)
+  - id: metric_sum
+    type: metric
+    name: Total Revenue
+    aggregate: sum
+    physicalName: price
+  - id: region
+    type: attribute
+    physicalName: customer_region
+  - id: timestamp
+    type: datetime
+    physicalName: created_at
+    primaryDate: true
+```
+
