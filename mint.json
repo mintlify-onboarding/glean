@@ -69,6 +69,27 @@
           "dashboards/Text",
           "dashboards/Filters"
       ]
+    },
+    {
+      "group": "Dataops",
+      "pages": [
+          "data-ops/index",
+          "data-ops/Managing-Resources-With-Code",
+          "data-ops/Using-the-Glean-CLI",
+          "data-ops/Git-Integration",
+          "data-ops/Using-the-YAML-Editor",
+          "data-ops/GRNs",
+          {
+            "group": "Configurations Schemas",
+            "pages": [
+                "data-ops/config-schema/Data-Model",
+                "data-ops-config-schema/Saved-View",
+                "data-ops/config-schema/Dashboard",
+                "data-ops/config-schema/Color-Palette",
+                "data-ops/config-schema/Homepage-Launchpad"
+            ]
+          }
+      ]
     }
   ],
   "footerSocials":
