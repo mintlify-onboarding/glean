@@ -11,7 +11,7 @@ If you leave the TTL configuration blank, we will default the TTL for this data 
 
 If you set this to 1, then the cache will effectively be disabled (data will only be retained for one second).
 
-<Info> Local cache— Glean keeps a copy of cached data in your web browser while you are logged in so that exploring data feels incredibly fast.  The above caching rules also apply to this local browser cache.  If you make make the caching Time To Live very short, it may make normal operations like filtering and removing a filter feel slow. </Info>
+<Info> **Local cache**— Glean keeps a copy of cached data in your web browser while you are logged in so that exploring data feels incredibly fast.  The above caching rules also apply to this local browser cache.  If you make make the caching Time To Live very short, it may make normal operations like filtering and removing a filter feel slow. </Info>
 
 ## Changing caching Time To Live (TTL)
 
@@ -25,7 +25,7 @@ If you set this to 1, then the cache will effectively be disabled (data will onl
 Sometimes, you may know that the data a model uses has changed before Glean does. For example, after running an updated DBT pipeline.
 While you could just wait for the cache to expire (based on the TTL setting above), you can also immediately clear the cache for a given model.
 
-You can reset the model's cache using the [Glean CLI](/data-ops/Using-the-Glean-CLI.mdx):
+You can reset the model's cache using the [Glean CLI](/data-ops/Using-the-Glean-CLI):
 ```
 glean cache clear m:MODEL_ID
 ```

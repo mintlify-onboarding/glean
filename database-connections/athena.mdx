@@ -13,7 +13,7 @@ Because Athena is a query engine that can query data in lots of different format
 
 Athena performance is highly dependent on how you choose to store your data.  If you store carefully partitioned parquet files you may get reasonable performance.  If you just store data in lots of large csv files it might take minutes to query, which wouldn't be great for interactive exploration, even with Glean's caching.  Amazon has a few good articles on [tuning performance in Athena](https://docs.aws.amazon.com/athena/latest/ug/performance-tuning.html)
 
-<Warning> "Using Athena as a Data Warehouse"- For performance reasons we generally recommend using other cloud data warehouses for interactive analytics.  Athena can serve as a useful query layer for looking at raw data in s3, but doesn't serve well as your primary data warehouse unless it's carefully tuned for performance. </Warning>
+<Warning> **"Using Athena as a Data Warehouse"**- For performance reasons we generally recommend using other cloud data warehouses for interactive analytics.  Athena can serve as a useful query layer for looking at raw data in s3, but doesn't serve well as your primary data warehouse unless it's carefully tuned for performance. </Warning>
 
 ### How to get set up
 
