@@ -124,7 +124,6 @@
           "project-management/slack-integration",
           "project-management/users-and-permissions",
           "project-management/single-sign-on",
-          "database-connections/index",
           "project-management/demo-projects"
       ]
     },
