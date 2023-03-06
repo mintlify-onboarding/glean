@@ -40,7 +40,7 @@
   "navigation": [
     {
       "group": "Glean",
-      "pages": ["index"]
+      "pages": ["overview"]
     },
     {
       "group": "Data Models",
@@ -78,7 +78,7 @@
     {
       "group": "Dataops",
       "pages": [
-          "data-ops/index",
+          "data-ops/overview",
           "data-ops/Managing-Resources-With-Code",
           "data-ops/Using-the-Glean-CLI",
           "data-ops/Git-Integration",
@@ -99,13 +99,13 @@
     {
       "group": "Guides",
       "pages": [
-          "create-retention-curves/index"
+          "create-retention-curves/overview"
       ]
     },
     {
       "group": "Database Connections",
       "pages": [
-          "database-connections/index",
+          "database-connections/overview",
           "database-connections/athena",
           "database-connections/bigquery",
           "database-connections/duckdb",
