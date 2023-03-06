@@ -1,0 +1,34 @@
+---
+title: "Quickstart"
+description: "This guide will take you from defining data models to exploring data and sharing data with your team."
+---
+
+Once you get access to Glean, you will be invited to login to a project. Users can belong to multiple projects, but data cannot be shared between projects. So users, permissions, database connections, data models and every other resource is isolated in the context of a project. Typically your entire organization can be managed in a single project.
+
+<Info> **Not ready to connect to a database?**- You can use a [Sandbox demo project](/project-management/demo-projects) to test the functionality of Glean with sample datasets. </Info>
+
+## 1. Add a database connection
+Also see [database connections](/project-management/database-connections) for configurations specific to different database types.
+
+<Warning> **Firewall Configuration**- If you use a firewall to restrict access to your database, you'll need to allowlist Glean's IPs.
+Glean will always connect to your database from one of these IP addresses.  ```18.210.29.198
+34.230.230.9``` </Warning> 
+
+![](/imgs/quickstart.png)
+
+1. [Go to the Settings page](https://glean.io/app/p/settings)
+2. Click `+ New Database Connection`
+3. Select the type of database; either Athena, BigQuery, Snowflake, Postgres or Redshift
+4. Enter the credentials according to your type of database
+5. Click `Test` to test your connection
+6. Click `Add` to complete the process
+
+## 2. Define a data model
+
+<div style={{position: 'relative', paddingBottom: '62.5%', height: 0}}><iframe src="https://www.loom.com/embed/16445a878e2d4e12af36241ce581345d?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameBorder={0} webkitallowfullscreen mozallowfullscreen allowFullScreen style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} /></div>
+
+When possible, you should try to modify or extend an existing data model instead of adding new data models for each new analysis. This section shows you how to quickly add data if you're getting started, you should also check out [Data Models Overview](/data-modeling/Data-Models-Overview) and [Data Modeling Best Practices](/data-modeling/data-modeling-best-practices)
+
+<Info> **Preparing Data for Glean**- Each Glean model is based on an underlying data table. For more technical advice see the best practices section on creating [denormalized data tables](/data-modeling/data-modeling-best-practices). If your data isn't quite in the right format in your database, it's possible to specify an underlying data query that will run as you explore data. </Info>
+
+
