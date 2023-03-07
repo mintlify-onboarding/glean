@@ -3,40 +3,40 @@ title: "Saved View"
 ---
 
 ## Schema
+
 Data models define the following properties:
 
-
 <ParamField path="glean" type="1.0">
-    The Glean file format version.
+  The Glean file format version.
 </ParamField>
 <ParamField path="type" type="saved_view">
-    The type of this resource, which in this case should always be "saved_view".
+  The type of this resource, which in this case should always be "saved_view".
 </ParamField>
 <ParamField path="name" type="string">
-    The user-facing name for this saved view. 
+  The user-facing name for this saved view.
 </ParamField>
 <ParamField path="model" type="string">
-    The file path or GRN of the data model.
+  The file path or GRN of the data model.
 </ParamField>
 <ParamField path="grn" type="string">
-    The persistent identifier for this data model.
+  The persistent identifier for this data model.
 </ParamField>
 <ParamField path="data" type="Data">
-    Information about the data of the saved view.
+  Information about the data of the saved view.
 </ParamField>
 <ParamField path="visualization" type="Visualization">
-    Information about the visualization of the saved view.
+  Information about the visualization of the saved view.
 </ParamField>
 <ParamField path="controlPanel" type="ControlPanel">
-    Specifications for the control panel
+  Specifications for the control panel
 </ParamField>
-<ParamField path="attributeTray" type="AttributeTray">
-</ParamField>
+<ParamField path="attributeTray" type="AttributeTray"></ParamField>
 
 #Data
 
 <ParamField path="x" type="">
-    One or more columns to use as the x axis in the visualization. (Specifying multiple X columns is only applicable when using a Table visualization.)
+  One or more columns to use as the x axis in the visualization. (Specifying
+  multiple X columns is only applicable when using a Table visualization.)
 </ParamField>
 
 <Expandable title="properties">
@@ -61,7 +61,9 @@ Data models define the following properties:
 </Expandable>
 
 <ParamField path="y" type="">
-    One or more columns to use as the y axis in the visualization, or as metric column(s) in a table. This can either be a reference to a model-defined metric:
+  One or more columns to use as the y axis in the visualization, or as metric
+  column(s) in a table. This can either be a reference to a model-defined
+  metric:
 </ParamField>
 
 <Expandable title="properties">
@@ -79,16 +81,16 @@ or a metric formula:
 </Expandable>
 
 <ParamField path="brekaout" type="Breakout">
-    Specifies a color breakout to display in the visualization.
+  Specifies a color breakout to display in the visualization.
 </ParamField>
 <ParamField path="trellis" type="Breakout">
-    Specifies a trellis breakout to display in the visualization.
+  Specifies a trellis breakout to display in the visualization.
 </ParamField>
-<ParamField path="filters" type="array<Filter> " >
-    Specifies filters that are applied by default in this view.
+<ParamField path="filters" type="array<Filter> ">
+  Specifies filters that are applied by default in this view.
 </ParamField>
 <ParamField path="sort" type="array">
-    Specifies column sorts for tables.
+  Specifies column sorts for tables.
 </ParamField>
 
 <Expandable title="properties">
@@ -108,177 +110,190 @@ or a metric formula:
 </ParamField>
 
 ## Breakout
+
 Specifies a color or trellis breakout to display.
 
 <ParamField path="columnId" type="string">
-    The column identifier of the column used for the breakout.
+  The column identifier of the column used for the breakout.
 </ParamField>
 <ParamField path="groups" type="array">
-    The list of values to group by.
+  The list of values to group by.
 </ParamField>
 
 <Expandable title="properties">
-<ParamField path="groups" type="array">
+  <ParamField path="groups" type="array">
     The list of values to group by.
-</ParamField>
-<ParamField path="key" type="null| string| number| boolean">
+  </ParamField>
+  <ParamField path="key" type="null| string| number| boolean">
     The value to group by
-</ParamField>
-<ParamField path="color" type="null| string">
+  </ParamField>
+  <ParamField path="color" type="null| string">
     The color of this breakout group
-</ParamField>
+  </ParamField>
 </Expandable>
 
-<ParamField path="granularity" type="day | hour| minute| month| quarter| second| week| year">
-    For datetime columns, the granularity of the breakout. 
+<ParamField
+  path="granularity"
+  type="day | hour| minute| month| quarter| second| week| year"
+>
+  For datetime columns, the granularity of the breakout.
 </ParamField>
 <ParamField path="binWidth" type="number">
-    For numeric columns, the bin width of the breakout. 
+  For numeric columns, the bin width of the breakout.
 </ParamField>
-<ParamField path="metricId" type="string">
-</ParamField>
-<ParamField path="sort" type="asc| desc">
-</ParamField>
-<ParamField path="limit" type="number">
-</ParamField>
+<ParamField path="metricId" type="string"></ParamField>
+<ParamField path="sort" type="asc| desc"></ParamField>
+<ParamField path="limit" type="number"></ParamField>
 <ParamField path="showOther" type="boolean">
-    If true, will collect any values not in `groups` under an "Other" group. Defaults to `true`.
+  If true, will collect any values not in `groups` under an "Other" group.
+  Defaults to `true`.
 </ParamField>
 
 ## Filters
+
 Filters require the following properties:
 
 <ParamField path="columnId" type="string">
-    The column identifier of the column used for filtering. 
+  The column identifier of the column used for filtering.
 </ParamField>
 
-Specify **one** of the following properties on the filter to define the filtering condition:
+Specify **one** of the following properties on the filter to define the
+filtering condition:
 
 _Supported for string attributes:_
+
 <ParamField path="contains" type="string">
-    Filters to values which contain the provided substring.
+  Filters to values which contain the provided substring.
 </ParamField>
 <ParamField path="values" type="array<string>">
-    Filters to an allowed set of literal values.
+  Filters to an allowed set of literal values.
 </ParamField>
 <ParamField path="excludeValues" type="array<string>">
-    Filters to all data except the specified values.
+  Filters to all data except the specified values.
 </ParamField>
 
-_Supported for numeric and date attributes:_Supported
+_Supported for numeric and date attributes:_ Supported
+
 <ParamField path="range" type="array<*>">
-    Filters to values within the specified range.
-    This array should contain exactly 2 values. The first value is used as the lower bound, and the second value is used as the upper bound
+  Filters to values within the specified range. This array should contain
+  exactly 2 values. The first value is used as the lower bound, and the second
+  value is used as the upper bound
 </ParamField>
 <ParamField path="gte" type="*">
-    Filter to values greater than or equal to the provided value.
+  Filter to values greater than or equal to the provided value.
 </ParamField>
 <ParamField path="gt" type="*">
-    Filter to values greater than the provided value.
+  Filter to values greater than the provided value.
 </ParamField>
 <ParamField path="lte" type="*">
-    Filter to values less than or equal to the provided value.
+  Filter to values less than or equal to the provided value.
 </ParamField>
 <ParamField path="lt" type="*">
-    Filter to values less than the provided value.
+  Filter to values less than the provided value.
 </ParamField>
 
 When filtering string attributes, use string values.
 
 For numeric attributes, use number values.
 
-For date attributes, you can specify a date in the format `YYYY-MM-DD`, or define a relative date with an array of the shape `[offset, unit]`. For example, a relative date of 1 year before now would look like `[-1, 'year']`.
+For date attributes, you can specify a date in the format `YYYY-MM-DD`, or
+define a relative date with an array of the shape `[offset, unit]`. For example,
+a relative date of 1 year before now would look like `[-1, 'year']`.
 
 ## Visualization
+
 Information about the visualization of the saved view.
 
 <ParamField path="chartType" type="area| bar| line| pivot| table">
-    The chart type
+  The chart type
 </ParamField>
 <ParamField path="colorPalette" type="string">
-    The file path to the color palette definition.
+  The file path to the color palette definition.
 </ParamField>
 <ParamField path="showOther" type="boolean">
-    Flag indicating whether unfiltered items should be displayed in an "Other" group when a breakout is active.
+  Flag indicating whether unfiltered items should be displayed in an "Other"
+  group when a breakout is active.
 </ParamField>
 <ParamField path="stack" type="stack| stack100pct| unstack">
-    The stacking type, when using an "area", "bar", or "line" chart.
+  The stacking type, when using an "area", "bar", or "line" chart.
 </ParamField>
 <ParamField path="showAxisLabels" type="boolean">
-    Whether to show the axis labels when using an "area", "bar", or "line" chart
+  Whether to show the axis labels when using an "area", "bar", or "line" chart
 </ParamField>
 <ParamField path="missingValuesBehavior" type="hide| show">
-    Whether to show missing values for a "bar" chart
+  Whether to show missing values for a "bar" chart
 </ParamField>
 <ParamField path="legend" type="bottom| left| none| right| top">
-    The position of the chart legend when using an "area", "bar", "line" or horizontal bar chart
+  The position of the chart legend when using an "area", "bar", "line" or
+  horizontal bar chart
 </ParamField>
 <ParamField path="tableColor" type="blue| green| none| red">
-    A gradient table color to be used in conjunction with table calculations in a "pivot" chart
+  A gradient table color to be used in conjunction with table calculations in a
+  "pivot" chart
 </ParamField>
 <ParamField path="padding" type="compact| default">
-    The amount of table padding to apply in a "pivot" or "table" chart
+  The amount of table padding to apply in a "pivot" or "table" chart
 </ParamField>
 <ParamField path="tableVisualization" type="array">
-    Cell visualizations for table or pivot charts
+  Cell visualizations for table or pivot charts
 </ParamField>
 
 <Expandable title="properties">
 
-<ParamField path="calculation" type="columnPercentMax| columnPercentTotal| rowPercentTotal">
-</ParamField>
-<ParamField path="columnId" type="string">
-</ParamField>
-<ParamField path="type" type="bar">
-</ParamField>
-<ParamField path="maxWidthPixels" type="number">
-</ParamField>
-<ParamField path="heightPixels" type="number">
-</ParamField>
-<ParamField path="labelPlacement" type="floating| non| right">
-</ParamField>
-<ParamField path="metricFormulaName" type="string">
-</ParamField>
-
+<ParamField
+  path="calculation"
+  type="columnPercentMax| columnPercentTotal| rowPercentTotal"
+></ParamField>
+<ParamField path="columnId" type="string"></ParamField>
+<ParamField path="type" type="bar"></ParamField>
+<ParamField path="maxWidthPixels" type="number"></ParamField>
+<ParamField path="heightPixels" type="number"></ParamField>
+<ParamField path="labelPlacement" type="floating| non| right"></ParamField>
+<ParamField path="metricFormulaName" type="string"></ParamField>
 
 </Expandable>
 
 <ParamField path="tableCellFormatting" type="array">
-    Cell formatting for table or pivot charts
+  Cell formatting for table or pivot charts
 </ParamField>
 
 <Expandable title="properties">
 
-<ParamField path="calculation" type="columnPercentMax| columnPercentTotal| rowPercentTotal">
-</ParamField>
-<ParamField path="columnId" type="string">
-</ParamField>
-<ParamField path="color" type="blue| green| none red">
-</ParamField>
-<ParamField path="showPercentage" type="boolean">
-</ParamField>
-<ParamField path="metricFormulaName" type="string">
-</ParamField>
-
+<ParamField
+  path="calculation"
+  type="columnPercentMax| columnPercentTotal| rowPercentTotal"
+></ParamField>
+<ParamField path="columnId" type="string"></ParamField>
+<ParamField path="color" type="blue| green| none red"></ParamField>
+<ParamField path="showPercentage" type="boolean"></ParamField>
+<ParamField path="metricFormulaName" type="string"></ParamField>
 
 </Expandable>
 
 ## ControlPanel
+
 Specifications for the control panel
 
 <ParamField path="isVisible" type="boolean">
-    If true (default), then the control panel will be visible.
+  If true (default), then the control panel will be visible.
 </ParamField>
 
 ## AttributeTray
+
 <ParamField path="isVisible" type="boolean">
-    If false, the attribute tray will be hidden.
+  If false, the attribute tray will be hidden.
 </ParamField>
 <ParamField path="orderAttributesAccordingToSpec" type="boolean">
-    If true, tiles in the attribute tray will be ordered as specified below in `attributeTiles`, with all remaining attributes being placed after. If false (the default), attributes will appear in the default order regardless of their specification in `attributeTiles`.
+  If true, tiles in the attribute tray will be ordered as specified below in
+  `attributeTiles`, with all remaining attributes being placed after. If false
+  (the default), attributes will appear in the default order regardless of their
+  specification in `attributeTiles`.
 </ParamField>
 <ParamField path="attributeTiles" type="array">
-    Per-tile configuration. By default, all non-date attributes in the model will appear as tiles in the attribute tray. Specifying tiles in this array allows for additional tile configuration, including hiding them. Specifying tiles in this array will shift them to the start of the tray.
+  Per-tile configuration. By default, all non-date attributes in the model will
+  appear as tiles in the attribute tray. Specifying tiles in this array allows
+  for additional tile configuration, including hiding them. Specifying tiles in
+  this array will shift them to the start of the tray.
 </ParamField>
 
 <Expandable title="properties">
@@ -321,7 +336,7 @@ Set `visualization.chartType` to `"source_data_table"`
 - Only `data.y`, `data.limit`, and `data.filters` are supported.
 
 ## Examples
- 
+
 #### Simple Bar Chart
 
 ```yaml
@@ -350,6 +365,7 @@ data:
 ```
 
 ### Bar Chart with Binned Numeric X Axis
+
 ```yaml
 glean: "1.0"
 type: saved_view
@@ -406,6 +422,7 @@ data:
 ```
 
 ### Table with Attribute & Metric Filters
+
 ```yaml
 glean: "1.0"
 type: saved_view

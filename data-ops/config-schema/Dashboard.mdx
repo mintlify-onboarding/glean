@@ -3,168 +3,199 @@ title: "Dashboard"
 ---
 
 <ParamField path="glean" type="1.0">
-    The Glean file format version.
+  The Glean file format version.
 </ParamField>
 <ParamField path="type" type="dashboard">
-    The type of this resource, which in this case should always be "dashboard".
+  The type of this resource, which in this case should always be "dashboard".
 </ParamField>
 <ParamField path="name" type="string">
-    The user-facing name for this saved view. 
+  The user-facing name for this saved view.
 </ParamField>
 <ParamField path="description" type="string">
-    The user-visible description for this dashboard.
+  The user-visible description for this dashboard.
 </ParamField>
 <ParamField path="grn" type="string">
-    The persistent identifier for this dashboard. 
+  The persistent identifier for this dashboard.
 </ParamField>
 <ParamField path="globalFilters" type="array<Filter>">
-    Specifies filters that are applied to all dashboard blocks.
+  Specifies filters that are applied to all dashboard blocks.
 </ParamField>
 
-Dashboard content is defined using **sections**, each containing one or more **rows** of **blocks**.
+Dashboard content is defined using **sections**, each containing one or more
+**rows** of **blocks**.
 
 ## Sections
-Sections define a collection of rows (and in turn blocks) which are visually separated and can be affected by a shared set of filters.
+
+Sections define a collection of rows (and in turn blocks) which are visually
+separated and can be affected by a shared set of filters.
 
 <ParamField path="rows" type="array<Row>">
-    Specifies the rows of blocks that belong to the section.
+  Specifies the rows of blocks that belong to the section.
 </ParamField>
 <ParamField path="filters" type="array<Filter>">
-    Specifies filters that are applied to blocks in the section.
+  Specifies filters that are applied to blocks in the section.
 </ParamField>
 
 ## Rows
-Rows are objects comprised of the following properties. Rows lay out their blocks to fill the entire space available on the page.
+
+Rows are objects comprised of the following properties. Rows lay out their
+blocks to fill the entire space available on the page.
 
 <ParamField path="blocks" type="array<Block>">
-    Specifies the blocks to display in this row.
+  Specifies the blocks to display in this row.
 </ParamField>
 <ParamField path="height" type="number">
-    Specifies the height of the row. If omitted, this will default to a height value of 4. This unit is dynamic. Glean adjusts how many pixels “one height unit" corresponds to based on the device's viewport size and resolution. Some general rules are as follows: - 2 = 1/6 of screen height - 4 = 1/3 of screen height - 6 = 1/2 of screen height - 12 = full screen height If a row only contains text, this value is ignored, and the height of the row will automatically be set to exactly contain the text.
+  Specifies the height of the row. If omitted, this will default to a height
+  value of 4. This unit is dynamic. Glean adjusts how many pixels “one height
+  unit" corresponds to based on the device's viewport size and resolution. Some
+  general rules are as follows: - 2 = 1/6 of screen height - 4 = 1/3 of screen
+  height - 6 = 1/2 of screen height - 12 = full screen height If a row only
+  contains text, this value is ignored, and the height of the row will
+  automatically be set to exactly contain the text.
 </ParamField>
 
 ## Blocks
+
 Blocks define the content of a dashboard, the charts, metrics, and text.
 
 All blocks have the following properties:
 
-<ParamField path="type" type="varies">
-</ParamField>
+<ParamField path="type" type="varies"></ParamField>
 <ParamField path="width" type="number">
-    Specifies the width of a content block in its row. The minimum width is 2. The total width of entire row is 12 units. If width is omitted, blocks will eventually share avaliable space in a row. Glean may adjust the width of a block to correctly fit its contents on different device sizes.
+  Specifies the width of a content block in its row. The minimum width is 2. The
+  total width of entire row is 12 units. If width is omitted, blocks will
+  eventually share avaliable space in a row. Glean may adjust the width of a
+  block to correctly fit its contents on different device sizes.
 </ParamField>
 
 ## Metric Blocks
-Metric blocks defines a single numeric result of evaluating a metric with a set of filter.
 
-<ParamField path="type" type="metric">
-</ParamField>
+Metric blocks defines a single numeric result of evaluating a metric with a set
+of filter.
+
+<ParamField path="type" type="metric"></ParamField>
 <ParamField path="dataModel" type="string">
-    Filepath or GRN of the model definition which contains this metric.
+  Filepath or GRN of the model definition which contains this metric.
 </ParamField>
 <ParamField path="dataModelMetricId" type="string">
-    ID of the metric column (in `dataModel`) to display
+  ID of the metric column (in `dataModel`) to display
 </ParamField>
 <ParamField path="filters" type="array<Filter>">
-    Additional filters to apply when calculating this metric. The dataModel key is inferred to match the data model for this metric.
+  Additional filters to apply when calculating this metric. The dataModel key is
+  inferred to match the data model for this metric.
 </ParamField>
 <ParamField path="ignoreDashboardFilters" type="boolean">
-    Flag indicating whether the chart should ignore global & section filters
+  Flag indicating whether the chart should ignore global & section filters
 </ParamField>
 <ParamField path="label" type="string">
-    Label to display for this block
+  Label to display for this block
 </ParamField>
 
 ## Saved View Blocks
-Saved View blocks references an existing saved view and renders it on the dashboard.
 
-<ParamField path="type" type="savedView">
-</ParamField>
+Saved View blocks references an existing saved view and renders it on the
+dashboard.
+
+<ParamField path="type" type="savedView"></ParamField>
 <ParamField path="savedView" type="string">
-    Filepath or GRN of the saved view to display.
+  Filepath or GRN of the saved view to display.
 </ParamField>
 <ParamField path="ignoreDashboardFilters" type="boolean">
-    Flag indicating whether the chart should ignore global & section filters
+  Flag indicating whether the chart should ignore global & section filters
 </ParamField>
 <ParamField path="label" type="string">
-    Label to display for this block
+  Label to display for this block
 </ParamField>
 
 Some properties of the visualization can be configured with the following:
 
 <ParamField path="axisLabels" type="hide| inherit| show">
-    The visibility of axis labels when using an area, bar, or line chart
+  The visibility of axis labels when using an area, bar, or line chart
 </ParamField>
-<ParamField path="legendPosition" type="bottom| inherit| left| none| right| top">
-    The position of the chart legend when using an area, bar, line, or horizontal bar chart
+<ParamField
+  path="legendPosition"
+  type="bottom| inherit| left| none| right| top"
+>
+  The position of the chart legend when using an area, bar, line, or horizontal
+  bar chart
 </ParamField>
 
 ## Text (Markdown) Blocks
+
 Text blocks display text content, supporting markdown formatting.
 
-<ParamField path="type" type="markdown">
-</ParamField>
+<ParamField path="type" type="markdown"></ParamField>
 <ParamField path="text" type="string">
-    The markdown text content of this block.
+  The markdown text content of this block.
 </ParamField>
 
 ## Empty Blocks
 
-Empty blocks do not display anything and are invisible to users. Empty blocks can be used (along with the width property) to create space between two blocks in a row.
+Empty blocks do not display anything and are invisible to users. Empty blocks
+can be used (along with the width property) to create space between two blocks
+in a row.
 
 A block row comprised exclusively of empty blocks is invalid.
 
-<ParamField path="type" type="empty">
-</ParamField>
+<ParamField path="type" type="empty"></ParamField>
 
 ## Filters
+
 Dashboard filters require the following properties:
 
 <ParamField path="dataModel" type="string">
-    Filepath or GRN of the model definition which contains the column being filtered.
+  Filepath or GRN of the model definition which contains the column being
+  filtered.
 </ParamField>
 <ParamField path="columnId" type="string">
-    The column identifier of the column used for filtering.
+  The column identifier of the column used for filtering.
 </ParamField>
 
-Specify **one** of the following properties on the filter to define the filtering condition:
+Specify **one** of the following properties on the filter to define the
+filtering condition:
 
-_Supported for string attributes:_Supported
+_Supported for string attributes:_ Supported
+
 <ParamField path="contains" type="string">
-    Filters to values which contain the provided substring.
+  Filters to values which contain the provided substring.
 </ParamField>
 <ParamField path="values" type="array<string>">
-    Filters to an allowed set of literal values.
+  Filters to an allowed set of literal values.
 </ParamField>
 <ParamField path="contains" type="array<string>">
-    Filters to all data except the specified values.
+  Filters to all data except the specified values.
 </ParamField>
 
 _Supported for numeric and date attributes:_
+
 <ParamField path="range" type="array<*>">
-    Filters to values within the specified range.
-    This array should contain exactly 2 values. The first value is used as the lower bound, and the second value is used as the upper bound.
+  Filters to values within the specified range. This array should contain
+  exactly 2 values. The first value is used as the lower bound, and the second
+  value is used as the upper bound.
 </ParamField>
 <ParamField path="gte" type="*">
-    Filter to values greater than or equal to the provided value.
+  Filter to values greater than or equal to the provided value.
 </ParamField>
 <ParamField path="gt" type="*">
-    Filter to values greater than the provided value.
+  Filter to values greater than the provided value.
 </ParamField>
 <ParamField path="lte" type="*">
-    Filter to values less than or equal to the provided value.
+  Filter to values less than or equal to the provided value.
 </ParamField>
 <ParamField path="lt" type="*">
-    Filter to values less than the provided value.
+  Filter to values less than the provided value.
 </ParamField>
 
 When filtering string attributes, use string values.
 
 For numeric attributes, use number values.
 
-For date attributes, you can specify a date in the format `YYYY-MM-DD`, or define a relative date with an array of the shape `[offset, unit]`. For example, a relative date of 1 year before now would look like `[-1, 'year']`.
+For date attributes, you can specify a date in the format `YYYY-MM-DD`, or
+define a relative date with an array of the shape `[offset, unit]`. For example,
+a relative date of 1 year before now would look like `[-1, 'year']`.
 
 ## Example
+
 ```yaml
 glean: "1.0"
 type: dashboard
